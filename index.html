@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 42</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <style>
+        .blurAwikwok{
+            backdrop-filter: blur(3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center bg-warning p-3 mb-5 blurAwikwok">
+        <h2>Data Mahasiswa</h2>
+        <h3>Universitas Komputer Indonesia</h3>
+    </div>
+    <div class="d-flex justify-content-evenly">
+
+        <!-- Input -->
+        <form class="form_input">
+            <div class="d-flex">
+                <div class="mb-3 me-3">
+                  <label class="form-label">NIK</label>
+                  <input type="text" class="form-control" id="nik_input">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Nama Mahasiswa</label>
+                  <input type="text" class="form-control" id="nama_input">
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="mb-3 me-3">
+                    <label class="form-label">Jenis Kelamin</label>
+                    <select id="gender_input" class="form-select">
+                        <option value="" selected disabled >Pilih Jenis Kelamin</option>
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Agama</label>
+                    <select id="agama_input" class="form-select">
+                        <option value="" selected disabled >Pilih Agama</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen">Kristen</option>
+                        <option value="Katholik">Katholik</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Buddha">Buddha</option>
+                        <option value="Konghucu">Konghucu</option>
+                    </select>
+                </div>
+                <div class="mb-3 ms-3">
+                    <label class="form-label">Jurusan</label>
+                    <select id="jurusan_input" class="form-select">
+                        <option value="" selected disabled >Pilih Jurusan</option>
+                        <option value="Jurusan Komputer">Jurusan Komputer</option>
+                        <option value="Jurusan Elektro">Jurusan Elektro</option>
+                        <option value="Jurusan Pemrograman">Jurusan Pemrograman</option>
+                    </select>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Status</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" id="radio_input_kawin" name="flexRadioDefault" value="Kawin">
+                    <label class="form-check-label">
+                     Kawin
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" id="radio_input_belum_kawin" name="flexRadioDefault" value="Belum Kawin">
+                    <label class="form-check-label">
+                      Belum Kawin
+                    </label>
+                  </div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Komentar</label>
+                <textarea id="komentar_input"  cols="30" rows="5" class="form-control"></textarea>
+            </div>
+            <div class="d-flex w-100 justify-content-between">
+                <input type="button" class="btn btn-outline-primary" value="Kirim" onclick="kirim()">
+                <input type="reset" class="btn btn-outline-danger" value="Reset">
+            </div>
+          </form>
+
+
+          <div class="h-100vh bg-black">
+            &nbsp;
+          </div>
+
+
+          <!-- Output -->
+          <div class="form_output">
+            <div class="d-flex">
+                <div class="mb-3 me-3">
+                  <label class="form-label">NIK</label>
+                  <input readonly disabled type="text" class="form-control" id="nik_output">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Nama Mahasiswa</label>
+                  <input readonly disabled type="text" class="form-control" id="nama_output">
+                </div>
+            </div>
+            <div class="d-flex">
+                <div class="mb-3 me-3">
+                    <label class="form-label">Jenis Kelamin</label>
+                    <input readonly disabled type="text" id="gender_output" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Agama</label>
+                    <input readonly disabled type="text" class="form-control" id="agama_output">
+                </div>
+                <div class="mb-3 ms-3">
+                    <label class="form-label">Jurusan</label>
+                    <input readonly disabled type="text" class="form-control" id="jurusan_output">
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Status</label>
+                <input readonly disabled type="text" id="radio_output" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Komentar</label>
+                <textarea readonly disabled id="komentar_output" cols="30" rows="5" class="form-control"></textarea>
+            </div>
+          </div>
+    </div>
+
+
+    <!-- Script -->
+    <script>
+        function kirim(){
+            document.getElementById('nik_output').value = document.getElementById('nik_input').value;
+            document.getElementById('nama_output').value = document.getElementById('nama_input').value;
+            document.getElementById('gender_output').value = document.getElementById('gender_input').value;
+            document.getElementById('agama_output').value = document.getElementById('agama_input').value;
+            document.getElementById('jurusan_output').value = document.getElementById('jurusan_input').value;
+            document.getElementById('komentar_output').value = document.getElementById('komentar_input').value;
+            status();
+        }
+
+        function status(){
+            var radioInputKawin = document.getElementById('radio_input_kawin');
+            var radioInputBelumKawin = document.getElementById('radio_input_belum_kawin');
+            var radioOutput = document.getElementById('radio_output');
+
+            if(radioInputKawin.checked == true){
+                radioOutput.value = radioInputKawin.value;
+            }
+            if(radioInputBelumKawin.checked == true){
+                radioOutput.value = radioInputBelumKawin.value;
+            }
+            if(radioInputKawin.checked == false && radioInputBelumKawin.checked == false){
+                radioOutput.value = "Tidak Memiliki Status";
+            }
+        }
+    </script>
+
+    <div class="mt-3 text-center">
+        <a href="/kedua.html" class="btn btn-info btn-sm">Kedua HTML</a>
+        <a href="/ketiga.html" class="btn btn-info btn-sm">Ketiga HTML</a>
+    </div>
+</body>
+</html>
